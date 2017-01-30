@@ -16,11 +16,14 @@ Use `pip` or `easy_install`:
 ### Usage
 Import the server and tornado's WebSocketHandler:
 
+```python
     from bottle.ext.tornadosocket import TornadoWebSocketServer
     from tornado.websocket import WebSocketHandler
+```
 
 Create your application handlers, for example:
 
+```python
     class EchoWebSocket(tornado.websocket.WebSocketHandler):
         def open(self):
             print 'Connected')
@@ -30,19 +33,20 @@ Create your application handlers, for example:
 
         def on_close(self):
            print 'Connection closed')
-
+```
 Map handlers to urls:
-
+```python
     tornado_handlers = [
             (r"/echo", EchoWebSocket)
         ]
+```
 
 Note: the `.*` is automatically mapped as a last handler to your normal bottle application
 
 And then use the provided server:
-
+```python
     run(port=8080, server=TornadoWebSocketServer, handlers=tornado_handlers)
-
+```
 ### Example
 To echo chat example just run `chat.py` in `examples/echo` folder:
 
